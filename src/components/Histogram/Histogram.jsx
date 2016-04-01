@@ -18,8 +18,8 @@ class HistogramBar extends Component {
             label = "";
         }
         let rectStyle = {
-          fill: 'steelblue'
-          // shape-rendering: 'crispEdges'
+          fill: 'steelblue',
+          shapeRendering: 'crispEdges'
         }
         let textStyle = {
             fill: '#fff',
