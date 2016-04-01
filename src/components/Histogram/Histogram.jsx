@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import d3 from 'd3';
 
-
 class HistogramBar extends Component {
     render() {
         let translate = `translate(${this.props.x}, ${this.props.y})`,
@@ -18,16 +17,25 @@ class HistogramBar extends Component {
         if (this.props.width < 10) {
             label = "";
         }
-
+        let rectStyle = {
+          fill: 'steelblue'
+          // shape-rendering: 'crispEdges'
+        }
+        let textStyle = {
+            fill: '#fff',
+            font: '12px sans-serif'
+        }
         return (
             <g transform={translate} className="bar">
                 <rect width={this.props.width}
                       height={this.props.height-2}
-                      transform="translate(0, 1)">
+                      transform="translate(0, 1)"
+                      style={rectStyle}>
                 </rect>
                 <text textAnchor="end"
                       x={this.props.width-5}
-                      y={this.props.height/2+3}>
+                      y={this.props.height/2+3}
+                      style={textStyle}>
                     {label}
                 </text>
             </g>
@@ -76,6 +84,12 @@ class Histogram extends Component {
                      width: this.widthScale(bar.y),
                      height: this.yScale(bar.dx),
                      key: "histogram-bar-"+bar.x+"-"+bar.y}
+
+        // let style = {
+        //   fill: 'steelblue',
+        //   shape-rendering: 'crispEdges';
+        // }
+
 
         return (
             <HistogramBar {...props} />

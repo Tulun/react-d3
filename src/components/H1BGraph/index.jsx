@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import d3 from 'd3';
 
+
 import Histogram from '../Histogram';
 class H1BGraph extends Component {
   constructor() {

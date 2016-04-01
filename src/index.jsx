@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 
 import H1BGraph from './components/H1BGraph/index.jsx';
 
+require('./style.css');
+
+
 // Add the ability to capitalize / decapitalize here. No need to add a library.
 
 String.prototype.capitalize = function() {
