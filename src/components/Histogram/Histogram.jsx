@@ -85,12 +85,6 @@ class Histogram extends Component {
                      height: this.yScale(bar.dx),
                      key: "histogram-bar-"+bar.x+"-"+bar.y}
 
-        // let style = {
-        //   fill: 'steelblue',
-        //   shape-rendering: 'crispEdges';
-        // }
-
-
         return (
             <HistogramBar {...props} />
         );
