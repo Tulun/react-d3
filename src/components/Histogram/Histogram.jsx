@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import d3 from 'd3';
 
+import Axis from './Axis';
+
 class HistogramBar extends Component {
     render() {
         let translate = `translate(${this.props.x}, ${this.props.y})`,
@@ -90,18 +92,19 @@ class Histogram extends Component {
         );
     }
 
-    render() {
-        let translate = `translate(0, ${this.props.topMargin})`,
-            bars = this.histogram(this.props.data);
+  render() {
+    let translate = `translate(0, ${this.props.topMargin})`,
+      bars = this.histogram(this.props.data);
 
-        return (
-            <g className="histogram" transform={translate}>
-                <g className="bars">
-                    {bars.map(::this.makeBar)}
-                </g>
-            </g>
-        );
-    }
+    return (
+      <g className="histogram" transform={translate}>
+        <g className="bars">
+          {bars.map(::this.makeBar)}
+        </g>
+        <Axis {...this.props} data={bars}  />
+      </g>
+    );
+  }
 }
 
 
