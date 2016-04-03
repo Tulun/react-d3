@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 
 import _ from 'lodash';
 import ControlRow from './ControlRow';
@@ -26,9 +26,21 @@ class Controls extends Component {
       year = '*';
     }
 
-    this.setState({yearFilter: fitler, 
+    this.setState({yearFilter: filter, 
                    year: year});
   }
+
+    updateStateFilter(state, reset) {
+        var filter = (d) => d.state == state;
+
+        if (reset || !state) {
+            filter = () => true;
+            state = '*';
+        }
+
+        this.setState({stateFilter: filter,
+                       state: state});
+    }
 
   componentDidUpdate() {
     this.props.updateDataFilter(
@@ -48,11 +60,17 @@ class Controls extends Component {
                               (d) => d.submit_date.getFullYear()))
                               .map(Number);
     }
+
+    let getUSStates = (data) => _.sortBy(_.keys(_.groupBy(data, (d) => d.state)));
     return (
       <div>
         <ControlRow data={this.props.data}
                     getToggleNames={getYears}
-                    updateDataFilter={() => true} />
+                    updateDataFilter={::this.updateYearFilter} />
+        <ControlRow data={this.props.data}
+                    getToggleNames={getUSStates}
+                    updateDataFilter={::this.updateStateFilter}
+                    capitalize='true' />
       </div>
     )
   }
