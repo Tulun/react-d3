@@ -4,6 +4,7 @@ import d3 from 'd3';
 
 import Histogram from '../Histogram';
 import Controls from './Controls';
+import {Title, Description} from './Meta';
 
 class H1BGraph extends Component {
   constructor() {
@@ -110,6 +111,8 @@ class H1BGraph extends Component {
                            .filter(this.state.dataFilter);
     return (
       <div>
+        <Title data={filteredData} />
+        <Description data={filteredData} allData={this.state.rawData} />
         <svg width={fullWidth} height={params.height}>
           <Histogram {...params} data={filteredData} />
         </svg>

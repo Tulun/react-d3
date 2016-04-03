@@ -30,22 +30,23 @@ class Controls extends Component {
                    year: year});
   }
 
-    updateStateFilter(state, reset) {
-        var filter = (d) => d.state == state;
+  updateStateFilter(state, reset) {
+    var filter = (d) => d.state == state;
 
-        if (reset || !state) {
-            filter = () => true;
-            state = '*';
-        }
-
-        this.setState({stateFilter: filter,
-                       state: state});
+    if (reset || !state) {
+      filter = () => true;
+      state = '*';
     }
+
+    this.setState({stateFilter: filter,
+                   state: state});
+  }
 
   componentDidUpdate() {
     this.props.updateDataFilter(
       ((filters) => {
-        return (d) => filters.yearFilter(d);
+        return (d) => filters.yearFilter(d)
+            && filters.stateFilter(d);
       })(this.state)
     );
   }
