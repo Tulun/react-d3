@@ -105,10 +105,13 @@ class H1BGraph extends Component {
       value: (d) => d.base_salary
     },
       fullWidth = 700;
+
+    let filteredData = this.state.rawData
+                           .filter(this.state.dataFilter);
     return (
       <div>
         <svg width={fullWidth} height={params.height}>
-          <Histogram {...params} data={this.state.rawData} />
+          <Histogram {...params} data={filteredData} />
         </svg>
         <Controls data={this.state.rawData} updateDataFilter={::this.updateDataFilter} />
       </div>

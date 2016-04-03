@@ -23,7 +23,7 @@ class ControlRow extends Component {
   }
 
   _addToggle(name) {
-    let key = 'toggle-${name}',
+    let key = `toggle-${name}`,
       label = name;
 
     if (this.props.capitalize) {
